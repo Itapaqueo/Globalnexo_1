@@ -33,10 +33,11 @@
         <div class="app">
             <h1>PhoneGap</h1>
             <div id="deviceready" class="blink">
-                <p class="event listening"><a href="Home.php">Connecting to Device</a></p>
-                <p class="event received"><a href="Home.php">Device is Ready</a></p>
+               <?php echo "probando php"; ?>
             </div>
         </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
        
     </body>
 </html>
