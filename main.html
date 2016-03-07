@@ -34,30 +34,7 @@ iframe { display:block; width:100%; border:none; }
 </style>
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script>
-    $.ajax({
-
-    url: 'http://www.globalnexo.com/',
-
-    dataType: 'jsonp',
-
-    jsonp: 'jsoncallback',
-
-    timeout: 5000,
-
-    success: function(data, status){
-
-       alert("ok"); //handle your data
-
-    },
-
-    error: function(){
-
-        $('#response').text('There was an error loading the data.');
-        alert('There was an error loading the data');
-
-    }
-
-});
+  
 
   /*  function onConfirm(button) {
        if (button==2){
