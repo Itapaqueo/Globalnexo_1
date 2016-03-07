@@ -34,7 +34,7 @@ iframe { display:block; width:100%; border:none; }
 </style>
 <script>
     
-    function onConfirm(button) {
+  /*  function onConfirm(button) {
        if (button==2){
        navigator.app.exitApp();
       }
@@ -46,65 +46,29 @@ iframe { display:block; width:100%; border:none; }
     'Salir',    
         'Cancelar,Salir'  
         );
-    }
+    }*/
 
 </script>
 <script>
-         var connection = window.navigator.connection    ||
-                          window.navigator.mozConnection ||
-                          null;
-         if (connection === null) {
-            document.getElementById('ni-unsupported').classList.remove('hidden');
-         } else if ('metered' in connection) {
-            document.getElementById('nio-supported').classList.remove('hidden');
-            [].slice.call(document.getElementsByClassName('old-api')).forEach(function(element) {
-               element.classList.remove('hidden');
-            });
- 
-            var bandwidthValue = document.getElementById('b-value');
-            var meteredValue = document.getElementById('m-value');
- 
-            connection.addEventListener('change', function (event) {
-               bandwidthValue.innerHTML = connection.bandwidth;
-               meteredValue.innerHTML = (connection.metered ? '' : 'not ') + 'metered';
-            });
-            connection.dispatchEvent(new Event('change'));
-         } else {
-            var typeValue = document.getElementById('t-value');
-            [].slice.call(document.getElementsByClassName('new-api')).forEach(function(element) {
-               element.classList.remove('hidden');
-            });
- 
-            connection.addEventListener('typechange', function (event) {
-               typeValue.innerHTML = connection.type;
-            });
-            connection.dispatchEvent(new Event('typechange'));
-         }
-      </script>
+function eventos() {
+document.addEventListener("deviceready", GestionarBackButton, false);
+};
+function GestionarBackButton(){
+alert("Salir");
+navigator.notification.confirm(
+"¿Quieres salir de la aplicacion?", // message
+onConfirm, // callback to invoke with index of button pressed
+"Salir", // title
+['Si','No'] // buttonLabels
+);
+function onConfirm(buttonIndex) {
+navigator.app.exitApp();
+}
+}
+</script>
     </head>
-    <body onload="loaded()">
-       <h1>Network Information API</h1>
- 
-      <span id="ni-unsupported" class="api-support hidden">API not supported</span>
-      <span id="nio-supported" class="api-support hidden">Old API version supported</span>
- 
-      <ul>
-         <li class="new-api hidden">
-            The connection type is <span id="t-value" class="value">undefined</span>.
-         </li>
-         <li class="old-api hidden">
-            The connection bandwidth is <span id="b-value" class="value">undefined</span>.
-         </li>
-         <li class="old-api hidden">
-            The connection is <span id="m-value" class="value">undefined</span>.
-         </li>
-      </ul>
- 
-      <small class="author">
-         Demo created by <a href="http://www.audero.it">Aurelio De Rosa</a>
-         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
-         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
-      </small>
+    <body onload="eventos()">
+      
        <iframe src="http://www.globalnexo.com/" width="100%" height="100%" align="center">
        
        <script type="text/javascript" src="cordova.js"></script>
