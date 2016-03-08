@@ -51,14 +51,14 @@ function doesConnectionExist() {
         xhr.send();
          
         if (xhr.status >= 200 && xhr.status < 304) {
-            alert("true");
+            
             return true;
         } else {
-            alert("falso");
+            document.location.href="error.html";
             return false;
         }
     } catch (e) {
-        alert("falso");
+        document.location.href="error.html";
         return false;
     }
 }
