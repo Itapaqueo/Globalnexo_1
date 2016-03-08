@@ -15,7 +15,7 @@ and open the template in the editor.
 function doesConnectionExist() {
     var xhr = new XMLHttpRequest();
     var file = "http://www.globalnexo.com/";
-    var randomNum =  10;
+    var randomNum = Math.round(Math.random() * 1);
      
     xhr.open('HEAD', file + "?rand=" + randomNum, false);
      
