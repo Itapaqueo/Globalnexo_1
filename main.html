@@ -33,24 +33,35 @@ html, body, div, iframe { margin:0; padding:0; height:100%; }
 iframe { display:block; width:100%; border:none; }
 </style>
 <script src="js/jquery.min.js" type="text/javascript"></script>
-<script>
-  
-function on_load(iframe) {
- var online = navigator.onLine;
+<script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
 
-if (online == false) {
+    // Espera a que PhoneGap se inicie
+    // 
+    document.addEventListener("deviceready", onDeviceReady, false);
 
-    alert("Sorry, we currently do not have Internet access.");
-    
-
-}
-else
-    {
-        alert("Correcto");
+    // PhoneGap esta listo, y ahora se pueden hacer llamadas a los métodos
+    //
+    function onDeviceReady() {
+        checkConnection();
     }
-}
 
-</script>
+    function checkConnection() {
+        var networkState = navigator.network.connection.type;
+
+        var states = {};
+    states[Connection.UNKNOWN]  = 'Conexión desconocida';
+    states[Connection.ETHERNET] = 'Conexión ethernet';
+    states[Connection.WIFI]     = 'Conexión WiFi';
+    states[Connection.CELL_2G]  = 'Conexión movil 2G';
+    states[Connection.CELL_3G]  = 'Conexión movil 3G';
+    states[Connection.CELL_4G]  = 'Conexión movil 4G';
+    states[Connection.NONE]     = 'Sin conexión';
+
+        alert('Tipo de conexión: ' + states[networkState]);
+    }
+
+    </script>
 <script>
 function eventos() {
 document.addEventListener("deviceready", GestionarBackButton, false);
@@ -71,7 +82,7 @@ navigator.app.exitApp();
     </head>
     <body onload="eventos()" >
       
-       <iframe src="http://www.globalnexo.com/" width="100%" height="100%" align="center" onload="on_load(this)">
+       <iframe src="http://www.globalnexo.com/" width="100%" height="100%" align="center">
        
        <script type="text/javascript" src="cordova.js"></script>
         
