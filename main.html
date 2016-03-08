@@ -41,11 +41,11 @@ function on_load(iframe) {
     // body of the page that the iframe is showing.
     // EDIT 2012-04-17: for wider support, fallback to contentWindow.document
     var doc = iframe.contentDocument || iframe.contentWindow.document;
-    alert(doc.body.innerHTML.substring(0, 50));
+    alert("Correcto");
   } catch (e) {
     // This can happen if the src of the iframe is
     // on another domain
-    alert('exception: ' + e);
+    alert("No cargo");
   }
 }
 
