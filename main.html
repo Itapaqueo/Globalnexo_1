@@ -36,17 +36,18 @@ iframe { display:block; width:100%; border:none; }
 <script>
   
 function on_load(iframe) {
-  try {
-    // Displays the first 50 chars in the innerHTML of the
-    // body of the page that the iframe is showing.
-    // EDIT 2012-04-17: for wider support, fallback to contentWindow.document
-    var doc = iframe.contentDocument || iframe.contentWindow.document;
-    alert("Correcto");
-  } catch (e) {
-    // This can happen if the src of the iframe is
-    // on another domain
-    alert("No cargo");
-  }
+ var online = navigator.onLine;
+
+if (online == false) {
+
+    alert("Sorry, we currently do not have Internet access.");
+    
+
+}
+else
+    {
+        alert("Correcto");
+    }
 }
 
 </script>
