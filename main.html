@@ -36,6 +36,32 @@ iframe { display:block; width:100%; border:none; }
 <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
 
 <script>
+    window.setInterval(function(){
+  doesConnectionExist();
+}, 15000);
+
+function doesConnectionExist() {
+    var xhr = new XMLHttpRequest();
+    var file = "http://www.globalnexo.com/";
+    var randomNum = Math.round(Math.random() * 10000);
+     
+    xhr.open('HEAD', file + "?rand=" + randomNum, false);
+     
+    try {
+        xhr.send();
+         
+        if (xhr.status >= 200 && xhr.status < 304) {
+            alert("true");
+            return true;
+        } else {
+            alert("falso");
+            return false;
+        }
+    } catch (e) {
+        alert("falso");
+        return false;
+    }
+}
 function eventos() {
 document.addEventListener("deviceready", GestionarBackButton, false);
 };
@@ -53,7 +79,7 @@ navigator.app.exitApp();
 }
 </script>
     </head>
-    <body onload="eventos()" >
+    <body onload="doesConnectionExist()" >
       
        <iframe src="http://www.globalnexo.com/" width="100%" height="100%" align="center">
        
