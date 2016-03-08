@@ -7,12 +7,40 @@ and open the template in the editor.
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+    window.setInterval(function(){
+  doesConnectionExist();
+}, 15000);
+
+function doesConnectionExist() {
+    var xhr = new XMLHttpRequest();
+    var file = "http://www.globalnexo.com/";
+    var randomNum = Math.round(Math.random() * 10000);
+     
+    xhr.open('HEAD', file + "?rand=" + randomNum, false);
+     
+    try {
+        xhr.send();
+         
+        if (xhr.status >= 200 && xhr.status < 304) {
+             document.location.href="main.html";
+            return true;
+        } else {
+            document.location.href="error.html";
+            return false;
+        }
+    } catch (e) {
+        document.location.href="error.html";
+        return false;
+    }
+}
+</script>
     </head>
     <body style="background-image: url('img/error.jpg');background-repeat: no-repeat;
         background-size: 100%;
         -moz-background-size: cover;
         -webkit-background-size: cover;
-        -o-background-size: cover;">
+        -o-background-size: cover;" onload="doesConnectionExist()">
        
     </body>
 </html>
