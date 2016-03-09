@@ -28,69 +28,71 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hello World</title>
- <style type="text/css">
-html, body, div, iframe { margin:0; padding:0; height:100%; }
-iframe { display:block; width:100%; border:none; }
-</style>
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
+        <style type="text/css">
+            html, body, div, iframe { margin:0; padding:0; height:100%; }
+            iframe { display:block; width:100%; border:none; }
+        </style>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" charset="utf-8" src="js/phonegap-1.0.0.js"></script>
 
-<script>
-    window.setInterval(function(){
-  doesConnectionExist();
-}, 15000);
+        <script>
+            window.setInterval(function() {
+                doesConnectionExist();
+            }, 15000);
 
-function doesConnectionExist() {
-    var xhr = new XMLHttpRequest();
-    var file = "http://www.globalnexo.com/";
-    var randomNum = Math.round(Math.random() * 1);
-     
-    xhr.open('HEAD', file + "?rand=" + randomNum, false);
-     
-    try {
-        xhr.send();
-         
-        if (xhr.status >= 200 && xhr.status < 304) {
-            
-            return true;
-        } else {
-            document.location.href="error.html";
-            return false;
-        }
-    } catch (e) {
-        document.location.href="error.html";
-        return false;
-    }
-}
-function eventos() {
-document.addEventListener("deviceready", GestionarBackButton, false);
-};
-function GestionarBackButton(){
-alert("Salir");
-navigator.notification.confirm(
-"¿Quieres salir de la aplicacion?", // message
-onConfirm, // callback to invoke with index of button pressed
-"Salir", // title
-['Si','No'] // buttonLabels
-);
-function onConfirm(buttonIndex) {
-navigator.app.exitApp();
-}
-}
-</script>
+            function doesConnectionExist() {
+                var xhr = new XMLHttpRequest();
+                var file = "http://www.globalnexo.com/";
+                var randomNum = Math.round(Math.random() * 1);
+
+                xhr.open('HEAD', file + "?rand=" + randomNum, false);
+
+                try {
+                    xhr.send();
+
+                    if (xhr.status >= 200 && xhr.status < 304) {
+
+                        return true;
+                    } else {
+                        document.location.href = "error.html";
+                        return false;
+                    }
+                } catch (e) {
+                    document.location.href = "error.html";
+                    return false;
+                }
+            }
+            function eventos() {
+                document.addEventListener("deviceready", GestionarBackButton, false);
+            }
+            ;
+            function GestionarBackButton() {
+                alert("Salir");
+                navigator.notification.confirm(
+                        "¿Quieres salir de la aplicacion?", // message
+                        onConfirm, // callback to invoke with index of button pressed
+                        "Salir", // title
+                        ['Si', 'No'] // buttonLabels
+                        );
+                function onConfirm(buttonIndex) {
+                    navigator.app.exitApp();
+                }
+            }
+        </script>
     </head>
     <body onload="doesConnectionExist()" >
-      
-       <iframe src="http://www.globalnexo.com/" width="100%" height="100%" align="center" onload="doesConnectionExist()">
-       
-       <script type="text/javascript" src="cordova.js"></script>
-        
-         
+        <button onclick="window.plugins.socialsharing.share(null, null, 'https://www.google.nl/images/srpr/logo4w.png', null)">image only</button>
+        <button onclick="window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){alert(errormsg)})">msg via WhatsApp (with errcallback)</button>
+        <iframe src="http://www.globalnexo.com/" width="100%" height="100%" align="center" onload="doesConnectionExist()">
 
-      <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/SocialSharing.js"></script> 
+
+
+        <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
-          
+
         </script>
     </body>
 </html>
