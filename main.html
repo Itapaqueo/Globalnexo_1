@@ -79,43 +79,10 @@
                 }
             }
         </script>
+        <script type="text/javascript" src="js/SocialSharing.js"></script>
     </head>
     <body onload="doesConnectionExist()" >
-        <li>
- <p>
-  <a href="http://www.smartjava.org/content/html5-access-battery-status-through-javascript">HTML5: Access Battery status through javascript</a> 
-  <img class="share" src="assets/share-this-icon.png" alt="share" height="20">
- </p>
-</li>
- 
-...
- 
-<script type="text/javascript">
- 
-    // whenever the share button is clicked
-    $(".share").click(function() {
- 
-        // get the information we want to share, the url
-        var linkToShare = $(this).prev().attr('href');
- 
-        // next we can define the webintent,
-        var params = {
-            'action': 'http://webintents.org/share',
-            'type': 'text/uri-list',
-            'data': linkToShare
-        };
- 
-        // create the intent
-        var intent = new WebKitIntent(params);
- 
-        // start the intent, and pass in the callback
-        // that is called on succes.
-        window.navigator.webkitStartActivity(intent, function(data) {
-            $("#callback").text("Received from invoked intent: " + data);
-        });
-    });
-</script>
-        
+        <button onclick="window.plugins.socialsharing.shareViaWhatsApp('Message via WhatsApp', null /* img */, null /* url */, function() {console.log('share ok')}, function(errormsg){alert(errormsg)})">msg via WhatsApp (with errcallback)</button>
         <iframe src="http://www.globalnexo.com/" width="100%" height="100%" align="center" onload="doesConnectionExist()">
 
         <script type="text/javascript" src="cordova.js"></script>

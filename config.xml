@@ -70,7 +70,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
-    <gap:plugin name="nl.x-services.plugins.socialsharing" version="3.5" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" />
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
@@ -141,6 +141,17 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-
+<!-- for iOS -->
+<feature name="SocialSharing">
+  <param name="ios-package" value="SocialSharing" />
+</feature>
+<!-- for Android (you will find one in res/xml) -->
+<feature name="SocialSharing">
+  <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+</feature>
+<!-- for Windows Phone -->
+<feature name="SocialSharing">
+  <param name="wp-package" value="SocialSharing"/>
+</feature>
 
 </widget>
